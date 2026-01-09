@@ -12,6 +12,9 @@ BASE_DIR = Path(__file__).parent.parent
 # Data directory
 DATA_DIR = BASE_DIR / "data"
 
+# Vector database directory
+VECTOR_DB_DIR = BASE_DIR / "vector_db"
+
 # Department folders
 DEPARTMENTS = ["hr", "it", "policy"]
 
