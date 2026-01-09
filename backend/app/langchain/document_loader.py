@@ -19,4 +19,3 @@ def load_documents_by_department(department: str) -> List[Document]:
 
     documents = loader.load()
     return documents
-

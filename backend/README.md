@@ -72,3 +72,4 @@ backend/
 - Chat endpoint returns placeholder responses (LangChain integration pending)
 - CORS is configured for React frontend on ports 3000 and 5173
 
+

@@ -28,3 +28,4 @@ CORS_ORIGINS: List[str] = [
 # API settings
 API_PREFIX = "/api"
 
+
