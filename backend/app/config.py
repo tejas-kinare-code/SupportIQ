@@ -22,6 +22,9 @@ DEPARTMENTS = ["hr", "it", "policy"]
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 
+# RAG settings
+MAX_DISTANCE_THRESHOLD = 1.5  # Maximum distance for relevant documents (lower distance = higher similarity)
+
 # CORS settings
 CORS_ORIGINS: List[str] = [
     "http://localhost:3000",
