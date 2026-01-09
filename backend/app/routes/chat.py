@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.langchain.rag_service import get_rag_response
 from app.langchain.intent_classifier import detect_department
+from app.langchain.llm_service import get_direct_llm_response
 
 
 router = APIRouter()
@@ -13,8 +14,15 @@ async def chat(request: ChatRequest):
         department = detect_department(request.message)
         print("department is ", department)
         
-        response = get_rag_response(request.message, department)
-        print("RAG response:", response)
+        # Use direct LLM for general queries (greetings, casual conversation)
+        # Use RAG for hr/it queries (need knowledge base)
+        if department == "general":
+            response = get_direct_llm_response(request.message)
+            print("Direct LLM response:", response)
+        else:
+            response = get_rag_response(request.message, department)
+            print("RAG response:", response)
+        
         return ChatResponse(response=response)
     
     except ValueError as e:

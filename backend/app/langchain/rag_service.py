@@ -24,9 +24,7 @@ def _has_low_relevance(response_text: str) -> bool:
 
 
 def get_rag_response(query: str, department: str) -> str:
-    if department == "general":
-        return "I'm unable to assist with this query based on the available knowledge base. Please raise a ticket through the support system for further assistance."
-    
+    """Get RAG response using knowledge base. Department should be 'hr' or 'it'."""
     documents = load_documents_by_department(department)
     chunks = chunk_documents(documents)
     vector_store = create_or_load_vector_store(chunks, department)

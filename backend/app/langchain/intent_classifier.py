@@ -16,20 +16,25 @@ def detect_department(query: str) -> str:
     prompt = ChatPromptTemplate.from_template(
         """
         You are an intent classifier for an enterprise internal support system.
-        Classify the user query into ONE department: hr, it, or general.
+        Classify the user query into ONE category: hr, it, or general.
+
+        Use RAG (hr/it) when the query needs information from company policies, procedures, or documentation.
+        Use general (direct LLM) for greetings, casual conversation, or queries not related to company policies.
 
         Examples:
-        Query: "How many leaves can I take in a year?" → hr
-        Query: "What is my notice period?" → hr
-        Query: "I need help with VPN connection" → it
-        Query: "My laptop is not working" → it
-        Query: "What is the company address?" → general
-        Query: "Tell me about the cafeteria" → general
+        Query: "How many leaves can I take in a year?" → hr (needs leave policy document)
+        Query: "What is my notice period?" → hr (needs HR policy document)
+        Query: "I need help with VPN connection" → it (needs IT documentation)
+        Query: "My laptop is not working" → it (needs IT support documentation)
+        Query: "Hi" → general (greeting, no documentation needed)
+        Query: "Hello, how are you?" → general (casual conversation)
+        Query: "What is the company address?" → general (general question, not in policy docs)
+        Query: "Tell me about the cafeteria" → general (not in knowledge base)
 
         Return ONLY one lowercase word: hr, it, or general
 
         User query: {query}
-        Department:
+        Category:
         """
     )
 
